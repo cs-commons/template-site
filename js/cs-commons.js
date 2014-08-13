@@ -6,7 +6,10 @@
 	// Load fragments (if any).
 	function load_fragments() {
 		// .csc-fragment elements have HTML injected by loading a
-		// fragment document
+		// fragment document.  These are expected to have the
+		// path /subst/artifact_name/fragment_id.html, where artifact_name
+		// and fragment_id are the artifact name and fragment name,
+		// respectively.
 		$(".csc-fragment").each(function(index, elt) {
 			console.log("handling csc-fragment element");
 			var id = elt.id;
@@ -14,7 +17,7 @@
 				console.log("handling element with id " + id);
 				$.ajax({
 					type : 'GET',
-					url : m_site_url + "/subst/" + id + ".html",
+					url : m_site_url + "/subst/" + m_artifact_name + "/" + id + ".html",
 					dataType : 'text',
 					success : function(data, textStatus, jqXHR) {
 						console.log("Received data: " + data);
